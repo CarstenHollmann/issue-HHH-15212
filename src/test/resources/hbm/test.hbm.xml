@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <database-object>
+        <create>
+            CREATE OR REPLACE FUNCTION ${schema}.test()
+                RETURNS varchar AS
+            $BODY$
+                BEGIN
+                    SELECT 'test';
+                END;
+            $BODY$
+            LANGUAGE plpgsql
+        </create>
+        <drop>DROP FUNCTION ${schema}.test()</drop>
+        <dialect-scope name="org.hibernate.dialect.PostgreSQL95Dialect" />
+        <dialect-scope name="org.hibernate.spatial.dialect.postgis.PostgisPG95Dialect" />
+        <dialect-scope name="org.hibernate.dialect.H2Dialect" />
+    </database-object>
+</hibernate-mapping>
